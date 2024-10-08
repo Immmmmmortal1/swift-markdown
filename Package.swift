@@ -18,7 +18,7 @@ let package = Package(
     name: "swift-markdown",
     products: [
         .library(
-            name: "Markdown",
+            name: "ANTMarkdown",
             targets: ["Markdown"]),
     ],
     targets: [

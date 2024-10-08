@@ -18,24 +18,27 @@ let package = Package(
     name: "swift-markdown",
     products: [
         .library(
-            name: "ANTMarkdown",
-            targets: ["Markdown"]),
+            name: "CustomMarkdown", // 修改产品名称为自定义名称
+            targets: ["CustomMarkdownTarget"] // 修改 target 名称
+        ),
     ],
     targets: [
         .target(
-            name: "Markdown",
+            name: "CustomMarkdownTarget", // 修改 target 名称
             dependencies: [
                 "CAtomic",
                 .product(name: "cmark-gfm", package: cmarkPackageName),
                 .product(name: "cmark-gfm-extensions", package: cmarkPackageName),
-            ], 
+            ],
             exclude: [
                 "CMakeLists.txt"
-            ]),
+            ]
+        ),
         .testTarget(
             name: "MarkdownTests",
-            dependencies: ["Markdown"],
-            resources: [.process("Visitors/Everything.md")]),
+            dependencies: ["CustomMarkdownTarget"], // 测试目标也需要更新依赖
+            resources: [.process("Visitors/Everything.md")]
+        ),
         .target(name: "CAtomic"),
     ]
 )
